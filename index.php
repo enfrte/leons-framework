@@ -96,4 +96,6 @@ else { // No URI called. Run default controller action
     $result = $c->index();
 }
 
+unset($_SESSION['req']); // Clean up
+
 return $result; // the result of the controller output
