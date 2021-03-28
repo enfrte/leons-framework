@@ -24,7 +24,12 @@ $_SESSION['req'] = $req; // This is probably a bad idea
 // Remove the subfolder from the path if there is a subfolder and return the rest of the path as an array
 $uri_exp = explode('/', $_SERVER['REQUEST_URI']);
 $sub_folder_index = array_search($config['sub_folder_path'], $uri_exp);
-$uri_array = array_values(array_filter(array_slice($uri_exp, $sub_folder_index + 1)));
+if ($sub_folder_index) {
+    $uri_array = array_values(array_filter(array_slice($uri_exp, $sub_folder_index + 1)));
+}
+else {
+    $uri_array = array_values(array_filter($uri_exp));
+}
 
 $route_results = [];
 $found_match = "";
